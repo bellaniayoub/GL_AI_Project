@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from pipeline.trainer import Trainer
 from pipeline.validator import Validator
-from core import LogisticRegressionModel, RandomForestModel
+from core import LogisticRegressionModel, RandomForestModel, SVMModel, DecisionTreeModel
 from core.dataset import RespiratoryInfectionDataset
 from core.base_model import BaseModel
 
@@ -42,6 +42,18 @@ MODEL_CONFIGS = [
         model_name="random_forest",
         display_name="Random Forest",
         params={"n_estimators": 100, "max_depth": 10, "random_state": RANDOM_STATE}
+    ),
+    ModelConfig(
+        model_class=SVMModel,
+        model_name="svm",
+        display_name="Support Vector Machine",
+        params={"C": 1.0, "kernel": "rbf", "gamma": "scale", "random_state": RANDOM_STATE}
+    ),
+    ModelConfig(
+        model_class=DecisionTreeModel,
+        model_name="decision_tree",
+        display_name="Decision Tree",
+        params={"max_depth": 10, "min_samples_split": 2, "min_samples_leaf": 1, "random_state": RANDOM_STATE}
     )
 ]
 
